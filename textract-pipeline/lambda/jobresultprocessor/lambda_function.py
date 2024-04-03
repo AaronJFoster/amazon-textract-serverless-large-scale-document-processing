@@ -69,6 +69,9 @@ def processRequest(request):
         detectForms = True
         detectTables = True
 
+    dynamodb = AwsHelper().getResource('dynamodb')
+    ddb = dynamodb.Table(outputTable)
+
     opg = OutputGenerator(jobTag, pages, bucketName, objectName, detectForms, detectTables, ddb)
     opg.run()
 
